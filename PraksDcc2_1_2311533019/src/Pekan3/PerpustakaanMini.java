@@ -3,10 +3,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 // Kelas Buku
-class Buku {
+class PerpustakaanMini {
     String judul;
 
-    Buku(String judul) {
+    PerpustakaanMini(String judul) {
         this.judul = judul;
     }
 
@@ -17,23 +17,23 @@ class Buku {
 
 // Kelas utama
 public class PerpustakaanMini {
-    static Stack<Buku> tumpukan = new Stack<>();
+    static Stack<PerpustakaanMini> tumpukan = new Stack<>();
     static Scanner input = new Scanner(System.in);
 
     // Tambahkan 6 buku awal ke dalam tumpukan
     static void tambahBukuAwal() {
-        tumpukan.push(new Buku("Algoritma Dasar"));
-        tumpukan.push(new Buku("Struktur Data"));
-        tumpukan.push(new Buku("Basis Data"));
-        tumpukan.push(new Buku("Pemrograman Java"));
-        tumpukan.push(new Buku("Jaringan Komputer"));
-        tumpukan.push(new Buku("Sistem Operasi"));
+        tumpukan.push(new PerpustakaanMini("Algoritma Dasar"));
+        tumpukan.push(new PerpustakaanMini("Struktur Data"));
+        tumpukan.push(new PerpustakaanMini("Basis Data"));
+        tumpukan.push(new PerpustakaanMini("Pemrograman Java"));
+        tumpukan.push(new PerpustakaanMini("Jaringan Komputer"));
+        tumpukan.push(new PerpustakaanMini("Sistem Operasi"));
     }
 
     static void tambahBuku() {
         System.out.print("Masukkan judul buku: ");
         String judul = input.nextLine();
-        tumpukan.push(new Buku(judul));
+        tumpukan.push(new PerpustakaanMini(judul));
         System.out.println("Buku \"" + judul + "\" telah ditambahkan ke tumpukan.");
     }
 
@@ -41,7 +41,7 @@ public class PerpustakaanMini {
         if (tumpukan.isEmpty()) {
             System.out.println("Tumpukan kosong, tidak ada buku yang bisa diambil.");
         } else {
-            Buku diambil = tumpukan.pop();
+            PerpustakaanMini diambil = tumpukan.pop();
             System.out.println("Buku \"" + diambil + "\" telah diambil dari tumpukan.");
         }
     }
@@ -62,7 +62,7 @@ public class PerpustakaanMini {
         String judulDicari = input.nextLine();
         boolean ditemukan = false;
 
-        for (Buku buku : tumpukan) {
+        for (PerpustakaanMini buku : tumpukan) {
             if (buku.judul.equalsIgnoreCase(judulDicari)) {
                 ditemukan = true;
                 break;
