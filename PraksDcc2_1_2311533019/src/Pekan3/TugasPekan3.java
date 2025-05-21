@@ -3,10 +3,10 @@ import java.util.Scanner;
 import java.util.Stack;
 
 // Kelas Buku
-class PerpustakaanMini {
+class Buku {
     String judul;
 
-    PerpustakaanMini(String judul) {
+    Buku(String judul) {
         this.judul = judul;
     }
 
@@ -16,24 +16,24 @@ class PerpustakaanMini {
 }
 
 // Kelas utama
-public class PerpustakaanMini {
-    static Stack<PerpustakaanMini> tumpukan = new Stack<>();
+public class TugasPekan3 {
+    static Stack<Buku> tumpukan = new Stack<>();
     static Scanner input = new Scanner(System.in);
 
     // Tambahkan 6 buku awal ke dalam tumpukan
     static void tambahBukuAwal() {
-        tumpukan.push(new PerpustakaanMini("Algoritma Dasar"));
-        tumpukan.push(new PerpustakaanMini("Struktur Data"));
-        tumpukan.push(new PerpustakaanMini("Basis Data"));
-        tumpukan.push(new PerpustakaanMini("Pemrograman Java"));
-        tumpukan.push(new PerpustakaanMini("Jaringan Komputer"));
-        tumpukan.push(new PerpustakaanMini("Sistem Operasi"));
+        tumpukan.push(new Buku("Algoritma Dasar"));
+        tumpukan.push(new Buku("Struktur Data"));
+        tumpukan.push(new Buku("Basis Data"));
+        tumpukan.push(new Buku("Pemrograman Java"));
+        tumpukan.push(new Buku("Jaringan Komputer"));
+        tumpukan.push(new Buku("Sistem Operasi"));
     }
 
     static void tambahBuku() {
         System.out.print("Masukkan judul buku: ");
         String judul = input.nextLine();
-        tumpukan.push(new PerpustakaanMini(judul));
+        tumpukan.push(new Buku(judul));
         System.out.println("Buku \"" + judul + "\" telah ditambahkan ke tumpukan.");
     }
 
@@ -41,7 +41,7 @@ public class PerpustakaanMini {
         if (tumpukan.isEmpty()) {
             System.out.println("Tumpukan kosong, tidak ada buku yang bisa diambil.");
         } else {
-            PerpustakaanMini diambil = tumpukan.pop();
+            Buku diambil = tumpukan.pop();
             System.out.println("Buku \"" + diambil + "\" telah diambil dari tumpukan.");
         }
     }
@@ -62,7 +62,7 @@ public class PerpustakaanMini {
         String judulDicari = input.nextLine();
         boolean ditemukan = false;
 
-        for (PerpustakaanMini buku : tumpukan) {
+        for (Buku buku : tumpukan) {
             if (buku.judul.equalsIgnoreCase(judulDicari)) {
                 ditemukan = true;
                 break;
@@ -77,7 +77,6 @@ public class PerpustakaanMini {
     }
 
     public static void main(String[] args) {
-        // Tambahkan buku awal
         tambahBukuAwal();
 
         int pilihan;
@@ -90,8 +89,12 @@ public class PerpustakaanMini {
             System.out.println("4. Cari Buku");
             System.out.println("5. Keluar");
             System.out.print("Pilih menu: ");
+            while (!input.hasNextInt()) {
+                System.out.print("Masukkan angka yang valid: ");
+                input.next();
+            }
             pilihan = input.nextInt();
-            input.nextLine(); // hapus newline
+            input.nextLine(); // buang newline
 
             switch (pilihan) {
                 case 1 -> tambahBuku();
